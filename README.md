@@ -1,6 +1,6 @@
-# Remote-Draw
+# Collaborative NFT Painting
 
-Collaborative painting on a canvas over the network, using socket.io.
+Collaborative NFT painting on a canvas.
 
 Mouse + touch supported.  
 Legacy browsers not supported.
