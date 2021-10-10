@@ -1,6 +1,6 @@
 # NFToodle: Doodle together, have fun and sell as NFT!
 
-Collaborative doodling and NFT minting.  
+Collaborative doodling and NFT minting. Try the demo here http://nftoodle.xyz/ .  
 
 Built using NFTPort  https://www.nftport.xyz/ .  
 
