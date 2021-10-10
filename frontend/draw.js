@@ -218,6 +218,73 @@ function newPainting(mode) {
 	});
 }
 
+function mintNFT(){
+	$.showNotification({
+		body:"<h5>" + "NFT minting is in progress on Polygon. Status will be updated here shortly." + "</h5>"
+	  })
+
+	var image = canvas.toDataURL("image/png") + "";  // here is the most important part because if you dont replace you will get a DOM 18 exception.
+	var data = {
+		imageData: image,
+		mintToAddress: localStorage.getItem("walletAddress")
+	}
+
+	$.ajax({
+        type:'POST',
+        url: "/mintnft",
+        dataType: "json",
+        data: data,
+		success : handleData
+    });
+
+	function handleData(data) {
+		console.log(data);
+		var contractAddress = data.contract_address;
+		//addTokenToWallet(data.contract_address);
+		console.log("<h5>NFT minted with contract address " + '<a href="https://polygonscan.com/address/' + contractAddress + '"' + '>' + '</a>' + ' </h5>');
+
+		$.showNotification({
+			body:"<h5>NFT minted with contract address " + '<a href="https://polygonscan.com/address/' + contractAddress + '" target="_blank' + '"' + '>' + contractAddress + '</a>' + ' on Polygon. Please add NFT token to Metamask.'  + ' </h5>'
+	  	})
+		//do some stuff
+	}
+	
+	//window.location.href=image; // it will save locally
+
+}
+
+async function addTokenToWallet(contract_address){
+	const tokenAddress = contract_address;
+	console.log(tokenAddress);
+	const tokenSymbol = localStorage.getItem("paintingName");
+	const tokenDecimals = 0;
+	//const tokenImage = 'http://placekitten.com/200/300';
+
+	try {
+	// wasAdded is a boolean. Like any RPC method, an error may be thrown.
+	const wasAdded = await ethereum.request({
+		method: 'wallet_watchAsset',
+		params: {
+		type: 'ERC20', // Initially only supports ERC20, but eventually more!
+		options: {
+			address: tokenAddress, // The address that the token is at.
+			symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
+			decimals: tokenDecimals, // The number of decimals in the token
+			//image: tokenImage, // A string url of the token logo
+		},
+		},
+	});
+
+	if (wasAdded) {
+		console.log('Thanks for your interest!');
+	} else {
+		console.log('Your loss!');
+	}
+	} catch (error) {
+	console.log(error);
+	}
+}
+
 function getGradient(w, darken, brighten) {
 	const d = darken;
 	const b = brighten;

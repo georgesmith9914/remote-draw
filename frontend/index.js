@@ -27,16 +27,34 @@ function saveName() {
 
 function joinGame(id) {
 	console.log('Join painting', id);
-	saveName();
-	const nameUrl = encodeURIComponent(getName());
-	window.location.href = `draw.html?join=${id}&name=${nameUrl}`;
+	if (typeof window.ethereum !== 'undefined') {
+		console.log('MetaMask is installed!');
+		getAccount(id);
+		//$(this).html("Connected");
+	}else{
+		alert("Please install Metamask.");
+	}
 }
 
 function startGame() {
 	console.log('Start painting');
-	saveName();
+	/*saveName();
 	const nameUrl = encodeURIComponent(getName());
-	window.location.href = `draw.html?start&name=${nameUrl}`;
+	window.location.href = `draw.html?start&name=${nameUrl}`;*/
+	//console.log('Join painting', id);
+	if($("#painting-name").val() == ""){
+		alert("Enter painting name");
+	}else{
+		localStorage.setItem("paintingName",$("#painting-name").val()); 
+		if (typeof window.ethereum !== 'undefined') {
+			console.log('MetaMask is installed!');
+			getAccount();
+			//$(this).html("Connected");
+		}else{
+			alert("Please install Metamask.");
+		}
+	}
+
 }
 
 function enable(elem, doEnable) {
@@ -58,11 +76,19 @@ function updateGames(msg) {
 	for (let game of games) {
 		let li = document.createElement('li');
 		let ago = timeago.format(game.started);
-		let players = game.players.length > 0 ? game.players.join(', ') : '- no painters -';
+		//let players = game.players.length > 0 ? game.players.join(', ') : '- no painters -';
+		let players = game.players.length > 0 ? game.players.join(', ') : '';
 		li.textContent = 'Started ' + ago + ' (' + players + ') ';
+		if(game.players.length > 0){
+			li.textContent = 'Started ' + ago + ' (' + players + ') ';
+		}else{
+			li.textContent = 'Started ' + ago + " ";
+		}
 		let button = document.createElement('button');
-		button.textContent = 'Join painting';
-		button.onclick = joinGame.bind(window, game.id);
+		button.textContent = 'Join doodle';
+
+
+		button.onclick = joinGame.bind(window, game.id); 
 		enable(button, !!name);
 		li.appendChild(button);
 		gamesList.appendChild(li);
@@ -74,6 +100,22 @@ function updateGames(msg) {
 	nameLabel.style.color = name ? '#000' : '#f00';
 }
 
+async function getAccount(id) {
+	const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+	const account = accounts[0];
+	accountHere = account;
+	console.log(account);
+	saveName();
+	localStorage.setItem("walletAddress", account); 
+	const nameUrl = encodeURIComponent(getName());
+	if(id){
+		window.location.href = `draw.html?join=${id}&name=${nameUrl}`;
+	}else{
+		window.location.href = `draw.html?start&name=${nameUrl}`;
+	}
+
+}
+
 function updateName() {
 	updateGames({games});
 }
@@ -82,6 +124,7 @@ socket.on('games', updateGames);
 
 window.onload = function onload() {
 	loadName();
+	$("#painting-name").val("abc")
 	//updateGames({games});
 	// updateGames({ games: [
 	// 	{

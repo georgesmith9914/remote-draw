@@ -181,7 +181,6 @@ io.on('connection', socket => {
 });
 
 app.post('/mintnft', (req, res) => {
-	//console.log(req.body.imageData)
 	var data = req.body.imageData.replace(/^data:image\/\w+;base64,/, "");
 	var buf = Buffer.from(data, 'base64');
 	var fileName = Math.random() + 'image.png';

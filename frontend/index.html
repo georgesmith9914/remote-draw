@@ -15,22 +15,33 @@
 		</style>
 		<script src="node_modules/socket.io-client/dist/socket.io.js"></script>
 		<script src="node_modules/timeago.js/dist/timeago.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="index.js"></script>
 	</head>
 	<body>
+		<!--<p>
+			<span id="name-label">Title of Painting:</span> <input id="painting-name" oninput="updateName()" />
+		</p>-->
 		<p>
 			<span id="name-label">Your Name:</span> <input id="name" oninput="updateName()" />
 		</p>
 
-		<p style="margin-bottom: 0;">Current paintings:</p>
+		<p style="margin-bottom: 0;">Current doodles:</p>
 		<ul id="games-list" style="margin-top: 5px;">
 			<li>(loading...)</li>
 			<!-- li, button Join painting -->
 		</ul>
 		
-		<button id="new-game" onclick="startGame()">Start new painting</button>
+		<button id="new-game" onclick="startGame()">Start new doodle</button>
 
-		<p>Idle paintings are deleted a few minutes after the last painter left.</p>
+		<!--<p>Idle paintings are deleted a few minutes after the last painter left.</p>-->
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>
+			<div style="">Powered By</div>
+			<div>&nbsp;</div>
+			<div><a href="https://www.nftport.xyz/"><img src="./nftport logo.svg" alt="NFT Port" style="width:100px;"></a></div>
+		</p>
 
 		<!--<div style="position: fixed; bottom: 5px; right: 5px;">
 			<a href="https://github.com/heidemn/remote-draw" target="_blank" rel="noopener noreferrer">github.com/heidemn/remote-draw</a>

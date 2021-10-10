@@ -1,0 +1,57 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    .navbar{
+    font-size: 2rem;
+    margin-right: 2rem;
+    }
+    
+    .nav-link{
+        margin-right: 3rem;
+    }
+    
+    .text-primary{
+        text-decoration: underline;
+    }
+    
+    #text-section h3{
+        text-align: end;
+        color: blueviolet;
+        text-decoration: underline;
+        text-underline-position: under;    
+        margin-right: 5rem;
+    }
+    
+    .card{
+        width: 18rem;
+        height: 15rem;
+        border-width: 0.3rem;
+    }
+    
+    .card-body h3{
+        padding-top: 4rem;
+    }
+    .fas{
+        size: 1rem;
+        color:grey;
+    }
+    
+    #main{
+        margin-top: 200px;
+    }
+    
+    .my-button{
+        width: 415px;
+    }
+    
+    #myProgress {
+        width: 100%;
+        background-color: rgb(233, 233, 233);
+      }
+      
+    #myBar {
+    width: 1%;
+    height: 30px;
+    background-color: rgb(44, 52, 155);
+    }
