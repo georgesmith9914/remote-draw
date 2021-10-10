@@ -36,7 +36,7 @@ if (!PREFIX.endsWith('/')) {
 // TODO: no-cache ?
 app.use(PREFIX, express.static(__dirname + '/../frontend'));
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
 //app.use(express.json())
 
 let games = {
