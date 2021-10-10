@@ -2,11 +2,12 @@
 
 Collaborative doodling and NFT minting.  
 
-Powered by NFTPort  https://www.nftport.xyz/ .  
+Built using NFTPort  https://www.nftport.xyz/ .  
 
 Mouse + touch supported.  
 Legacy browsers not supported.
 
+![Lobby](_docs/NFTPort.PNG)  
 ![Lobby](_docs/Screen%201.PNG)  
 ![Login with Metamask](_docs/Screen%2012.PNG)  
 ![Mint NFT](_docs/Screen%209.PNG)  
