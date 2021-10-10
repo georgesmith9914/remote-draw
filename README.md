@@ -7,6 +7,7 @@ Legacy browsers not supported.
 
 ![Lobby](_docs/Screen%201.PNG)  
 ![Drawing session](_docs/Screen%205.PNG)
+![Join Doodle session](_docs/Screen%206.PNG)
 
 ## Dependencies
 * Reverse Proxy: Caddy 2 https://caddyserver.com/
