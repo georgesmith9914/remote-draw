@@ -1,6 +1,6 @@
 # NFToodler: Doodle together, have fun and sell as NFT!
 
-Collaborative NFT painting on a canvas.
+Collaborative doodling and NFT minting.
 
 Mouse + touch supported.  
 Legacy browsers not supported.
