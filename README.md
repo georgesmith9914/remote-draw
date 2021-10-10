@@ -1,7 +1,7 @@
 # NFToodle: Doodle together, have fun and sell as NFT!
 
 Collaborative, multi-player doodling, scribbling and NFT minting. Try the demo here http://nftoodle.xyz/ .  
-Fun NFT artspace for everyday people!
+Fun NFT art creation for everyday people!
 
 Built using NFTPort  https://www.nftport.xyz/ .  
 
