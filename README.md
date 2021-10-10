@@ -8,7 +8,7 @@ Mouse + touch supported.
 Legacy browsers not supported.
 
 ![Lobby](_docs/NFTPort.PNG)  
-![Lobby](_docs/Screen%201.PNG)  
+![Lobby](_docs/Screen%22.png)  
 ![Login with Metamask](_docs/Screen%2012.PNG)  
 ![Mint NFT](_docs/Screen%209.PNG)  
 ![Drawing session](_docs/Screen%205.PNG)
