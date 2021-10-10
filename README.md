@@ -6,7 +6,7 @@ Mouse + touch supported.
 Legacy browsers not supported.
 
 ![Lobby](_docs/Screen%201.PNG)  
-![Drawing session](_docs/2_draw.png)
+![Drawing session](_docs/Screen%205.PNG)
 
 ## Dependencies
 * Reverse Proxy: Caddy 2 https://caddyserver.com/
