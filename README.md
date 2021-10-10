@@ -1,4 +1,4 @@
-# NFToodler: Doodle together, have fun and sell as NFT!
+# NFToodle: Doodle together, have fun and sell as NFT!
 
 Collaborative doodling and NFT minting.  
 
