@@ -1,6 +1,8 @@
 # NFToodler: Doodle together, have fun and sell as NFT!
 
-Collaborative doodling and NFT minting.
+Collaborative doodling and NFT minting.  
+
+Powered by NFTPort  https://www.nftport.xyz/ .  
 
 Mouse + touch supported.  
 Legacy browsers not supported.
