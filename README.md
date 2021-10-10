@@ -9,7 +9,7 @@ Legacy browsers not supported.
 
 ![Lobby](_docs/NFTPort.PNG)  
 ![Start](_docs/Screen%2021.PNG)  
-![Lobby](_docs/Screen%22.png)  
+![Lobby](_docs/Screen%2022.png)  
 ![Login with Metamask](_docs/Screen%2012.PNG)  
 ![Mint NFT](_docs/Screen%209.PNG)  
 ![Drawing session](_docs/Screen%205.PNG)
