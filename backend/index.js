@@ -3,6 +3,15 @@ const basicAuth = require('express-basic-auth');
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
+var bodyParser = require('body-parser')
+const fs = require('fs');
+const FormData = require('form-data');
+const request = require('request');
+require('dotenv').config();
+
+var nftName = "Painting";
+var nftDescription = "Painting";
+var chain = "polygon";
 
 const USER = process.env.AUTH_USER;
 const PASSWORD = process.env.AUTH_PASSWORD;
@@ -26,15 +35,9 @@ if (!PREFIX.endsWith('/')) {
 
 // TODO: no-cache ?
 app.use(PREFIX, express.static(__dirname + '/../frontend'));
-
-//const io = require('socket.io')();
-// var rndWord = require('random-noun-generator-german');
-// // generate a random german noun
-// console.log(rndWord());
-// console.log(rndWord());
-// console.log(rndWord());
-// console.log(rndWord());
-// console.log(rndWord());
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(express.json())
 
 let games = {
 	// gameId: {
@@ -44,15 +47,6 @@ let games = {
 	// 	picture
 	// }
 };
-
-// let picture = [
-// 	// {
-// 	// 	client: 'ID',
-// 	// 	i: 0,
-// 	// 	color: [r,g,b],
-// 	// 	path: [[x,y], [x,y], ...]
-// 	// }
-// ];
 
 
 // Broadcast list of games.
@@ -71,7 +65,7 @@ setInterval(() => {
 }, 3000);
 
 // Cleanup idle games.
-const DELETE_AFTER_IDLE_MSEC = parseInt(process.env.DELETE_AFTER_IDLE_SEC || 10) * 1000;
+const DELETE_AFTER_IDLE_MSEC = parseInt(process.env.DELETE_AFTER_IDLE_SEC || 1000000) * 1000;
 console.log(`DELETE_AFTER_IDLE_MSEC = ${DELETE_AFTER_IDLE_MSEC}`);
 setInterval(() => {
 	const now = Date.now();
@@ -82,7 +76,7 @@ setInterval(() => {
 		const idleMsec = now - games[gameId].idleSince;
 		if (idleMsec > DELETE_AFTER_IDLE_MSEC) {
 			console.log('*TERMINATE game:', gameId);
-			delete games[gameId];
+			//delete games[gameId];
 		}
 	}
 }, 3000);
@@ -185,6 +179,59 @@ io.on('connection', socket => {
 		io.to(gameId).emit('picture', { picture: games[gameId].picture, clearColor: games[gameId].clearColor });
 	});
 });
+
+app.post('/mintnft', (req, res) => {
+	//console.log(req.body.imageData)
+	var data = req.body.imageData.replace(/^data:image\/\w+;base64,/, "");
+	var buf = Buffer.from(data, 'base64');
+	var fileName = Math.random() + 'image.png';
+	fs.writeFile(fileName, buf, function(err, result){
+		const fileStream = fs.createReadStream(fileName);
+		var formData = {
+			file: fileStream
+		}
+		console.log("minting NFT now");
+		const options = {
+			url: 'https://api.nftport.xyz/v0/mints/easy/files?' + "chain=" + chain + "&name=" + nftName + "&description=" + nftDescription + "&mint_to_address=" + req.body.mintToAddress,
+			headers: {
+			  "Authorization": process.env.NFTPORT_KEY,
+			  },
+			  formData: formData
+		  };
+		   
+		  function callback(error, response, body) {
+			  console.log(response)
+			if (!error && response.statusCode == 200) {
+			  const info = JSON.parse(body);
+			  console.log(info.stargazers_count + " Stars");
+			  console.log(info.forks_count + " Forks");
+			  //response.end();
+			  res.send(response.body);
+			}
+			console.log(error)
+			
+		  }
+
+		  request.post(options, callback);
+	});
+	
+	
+
+	//const form = new FormData();
+	//const fileStream = fs.createReadStream('./Meme.png');
+	//form.append('file', fileStream);
+	//form.append('file', req.body.imageData);
+	
+
+
+
+	 
+
+
+
+
+	//res.send('Hello World!')
+})
 
 const port = parseInt(process.env.PORT || 42024);
 server.listen(port, () => console.log(`Frontend + Socket.IO listening on port ${port}, frontend prefix = ${PREFIX}`));
