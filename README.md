@@ -5,7 +5,7 @@ Collaborative doodling and NFT minting.
 Mouse + touch supported.  
 Legacy browsers not supported.
 
-![Lobby](_docs/screen 1.PNG)  
+![Lobby](_docs/Screen%201.PNG)  
 ![Drawing session](_docs/2_draw.png)
 
 ## Dependencies
