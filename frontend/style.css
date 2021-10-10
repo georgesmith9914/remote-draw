@@ -55,3 +55,16 @@ body{
     height: 30px;
     background-color: rgb(44, 52, 155);
     }
+
+    .high-margin{
+        margin-top: 1rem;
+    }
+
+    .footer-margin{
+        padding-top: 2rem!important;
+        margin-left: -80px!important;
+    }
+
+    .navbar-custom {
+        background-color: #ff5500;
+    }

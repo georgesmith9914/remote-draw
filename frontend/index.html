@@ -2,16 +2,26 @@
 <html>
 	<head>
 		<meta charset="utf-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
 		<title>Draw - Lobby</title>
+		<link rel="stylesheet" href="style.css">
 		<style>
 			html {
-				-webkit-text-size-adjust: 100%;
+				/*-webkit-text-size-adjust: 100%;
 				    -ms-text-size-adjust: 100%;
-				        text-size-adjust: 100%;
+				        text-size-adjust: 100%;*/
 			}
-			body, button, input {
+			body {
+				overflow-x: hidden!important;
+				
+				/*font-family: Arial, Helvetica, sans-serif;*/
+			}
+			/*body, button, input {
 				font-size: 24px;
-			}
+			}*/
 		</style>
 		<script src="node_modules/socket.io-client/dist/socket.io.js"></script>
 		<script src="node_modules/timeago.js/dist/timeago.min.js"></script>
@@ -19,29 +29,84 @@
 		<script src="index.js"></script>
 	</head>
 	<body>
+
+			
+		<nav class="navbar navbar-light bg-light navbar-custom">
+			<div class="container">
+			  <a class="navbar-brand" href="#">
+				<img src="./NFToodle.png" alt="" height="120">
+			  </a>
+			  <div style="font-size: 70%;">Start doodling!</div>
+			</div>
+		  </nav>
 		<!--<p>
 			<span id="name-label">Title of Painting:</span> <input id="painting-name" oninput="updateName()" />
 		</p>-->
-		<p>
-			<span id="name-label">Your Name:</span> <input id="name" oninput="updateName()" />
-		</p>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-1">
+					&nbsp;
+				  </div>
+			  <div class="col-sm-5">
+				<form>
+					<div class="form-group">
+					  <label for="inputGroup1" class="form-control-lg">Your Name</label>
+					  <input type="text" class="form-control form-control-lg" id="name" placeholder="Enter name" oninput="updateName()">
+					</div>
+					
+					<button id="new-game" class="btn btn-primary btn-lg" onclick="startGame()">Start new doodle</button>
+				  </form>
 
-		<p style="margin-bottom: 0;">Current doodles:</p>
-		<ul id="games-list" style="margin-top: 5px;">
-			<li>(loading...)</li>
-			<!-- li, button Join painting -->
-		</ul>
+			  </div>
+			  <div class="col-sm-5">
+				<form>
 		
-		<button id="new-game" onclick="startGame()">Start new doodle</button>
+					<p class="form-control-lg">Current doodles</p>
+					<ul id="games-list" style="margin-top: 5px;">
+						<li>(loading...)</li>
+						<!-- li, button Join painting -->
+					</ul>
+					
+				  </form>
+				  
+			  </div>
+			  <div class="col-sm-1">
+			  </div>
+			</div>
+		  </div>
+		  <footer class="pt-4 my-md-5 pt-md-5 border-top footer-margin">
+			<div class="row">
+			  <div class="col-6 col-md">
+				  &nbsp;
+				<!--<img class="mb-2" src="./nftport logo.svg" alt="" width="24" height="24">
+				<small class="d-block mb-3 text-muted">&copy; 2021-2022</small>-->
+			  </div>
+			  <div class="col-12 col-md">
+				<h5>Powered By</h5>
+				<ul class="list-unstyled text-small">
+				  <li><a class="text-muted" href="https://www.nftport.xyz/">NFTPort</a></li>
+				</ul>
+			  </div>
+			  <div class="col-6 col-md">
+				<h5>Resources</h5>
+				<ul class="list-unstyled text-small">
+				  <li><a class="text-muted" href="https://showcase.ethglobal.com/ethonline2021/nftoodle">Hackathon</a></li>
+				</ul>
+			  </div>
+			  <div class="col-6 col-md">
+				<h5>Contact</h5>
+				<ul class="list-unstyled text-small">
+				  <li><a class="text-muted" href="https://discord.gg/SwA5CNt2">Discord</a></li>
+				</ul>
+			  </div>
+			</div>
+		  </footer>
+		<!--<p class="text-justify">
+			<span id="name-label">Your Name:</span> <input id="name" oninput="updateName()" />
+		</p>-->
 
 		<!--<p>Idle paintings are deleted a few minutes after the last painter left.</p>-->
-		<p>&nbsp;</p>
-		<p>&nbsp;</p>
-		<p>
-			<div style="">Powered By</div>
-			<div>&nbsp;</div>
-			<div><a href="https://www.nftport.xyz/"><img src="./nftport logo.svg" alt="NFT Port" style="width:100px;"></a></div>
-		</p>
+
 
 		<!--<div style="position: fixed; bottom: 5px; right: 5px;">
 			<a href="https://github.com/heidemn/remote-draw" target="_blank" rel="noopener noreferrer">github.com/heidemn/remote-draw</a>

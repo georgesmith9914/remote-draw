@@ -81,11 +81,14 @@ function updateGames(msg) {
 		li.textContent = 'Started ' + ago + ' (' + players + ') ';
 		if(game.players.length > 0){
 			li.textContent = 'Started ' + ago + ' (' + players + ') ';
+			li.className = "high-margin";
 		}else{
 			li.textContent = 'Started ' + ago + " ";
+			li.className = "high-margin";
 		}
 		let button = document.createElement('button');
 		button.textContent = 'Join doodle';
+		button.className = "btn btn-lg btn-outline-primary"
 
 
 		button.onclick = joinGame.bind(window, game.id); 
